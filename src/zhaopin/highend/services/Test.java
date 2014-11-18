@@ -2,6 +2,8 @@ package zhaopin.highend.services;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import zhaopin.highend.entities.configration.StatisticConfig;
 import zhaopin.highend.entities.log.StatisticLog;
 import zhaopin.highend.utilities.DateTimeOper;
@@ -30,9 +32,22 @@ public class Test {
 	{
 		LogService service=new LogService();
 
-		HashMap<java.util.Date,List<StatisticLog>> dic=service.GetStatisticLogList(DateTimeOper.GetDate(2014, 10, 1),DateTimeOper.GetDate(2014, 11,12),6);
+		HashMap<java.util.Date,List<StatisticLog>> dic=service.GetStatisticLogList(DateTimeOper.GetDate(2014, 11, 12),DateTimeOper.GetDate(2014, 11,17),6);
 		
-		System.out.println(dic.size());
+		for(Map.Entry<java.util.Date,List<StatisticLog>> entry:dic.entrySet())
+		{
+			
+			System.out.println("<tr><td>"+entry.getKey().toLocaleString()+"</td>");
+			
+			for(StatisticLog log :entry.getValue())
+			{
+
+				System.out.println("<td>"+log.DataCount.toString()+"</td>");
+			}
+			
+			
+			System.out.println("</tr>");
+		}
 		
 	}
 }

@@ -81,22 +81,40 @@ public class LogService
 		
 		java.util.Date currentDate=list.get(0).StatisticDate;
 		
-		for(int i=0;i<list.size();i++)
+		int size=list.size();
+		
+		for(int i=0;i<size;i++)
 		{
 			StatisticLog log=list.get(i);
 			
-			if(i!=0&&log.StatisticDate!=currentDate)
+			if(i!=0&&!log.StatisticDate.equals(currentDate))
 			{
-				dic.put(currentDate, tempList);
+				List<StatisticLog> tList=new ArrayList<StatisticLog>();
+				
+				tList.addAll(tempList);
+				
+				dic.put(currentDate, tList);
+				
 				tempList.clear();
 				currentDate=log.StatisticDate;
 			}
 			
 			tempList.add(log);
 			
+			if(i==0)
+			{
+				currentDate=log.StatisticDate;
+				
+			}
+			
 			if(i==list.size()-1)
 			{
-				dic.put(currentDate, tempList);
+				List<StatisticLog> tList=new ArrayList<StatisticLog>();
+				
+				tList.addAll(tempList);
+				
+				dic.put(currentDate, tList);
+				//dic.put(currentDate, tempList);
 			}
 			
 		}

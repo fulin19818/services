@@ -37,7 +37,7 @@ public class Test {
 		for(Map.Entry<java.util.Date,List<StatisticLog>> entry:dic.entrySet())
 		{
 			
-			System.out.println("<tr><td>"+entry.getKey().toLocaleString()+"</td>");
+			System.out.println("<tr><td>"+DateTimeOper.ConverttoString(entry.getKey(),"yyyy-MM-dd")+"</td>");
 			
 			for(StatisticLog log :entry.getValue())
 			{
